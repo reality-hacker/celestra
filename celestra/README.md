@@ -134,16 +134,6 @@ Picking your own point on the Moon or Mars fetches terrain live, so it also need
 
 If a picked Mars point fails, run `python data-pipeline/diagnose_mars.py <lat> <lon>`. It checks the connection to NASA's HiRISE archive, the nearest terrain models and the read the app makes, with timings, and says which step fails. HiRISE has mapped only small patches of Mars, so a point more than 400 km from every HiRISE terrain model cannot be measured. Mars points are measured one at a time (a second request waits for the first), and every download now times out instead of hanging.
 
-## Deploy (free, one link for judges)
-
-The `Dockerfile` builds the website as static files and serves it from the FastAPI backend, so one container runs everything at a single address, including live "pick any point". It fits a 512 MB free instance (it peaks at about 300 MB while measuring a live point).
-
-**Render (free web service):**
-1. Sign in at render.com with GitHub and allow access to this repository.
-2. New > Web Service > pick the repository and the branch with this code. Render detects the `Dockerfile` (or use New > Blueprint, which reads `render.yaml`).
-3. Instance type **Free**, then Create. The first build takes about 5-10 minutes; the app is then at `https://<service-name>.onrender.com`.
-
-A free instance sleeps after 15 minutes without visitors and takes about a minute to wake on the next visit. Any other Docker host works the same way (the container listens on `$PORT`, default 7860). Local development is unchanged: `npm run dev` and `python backend/main.py` work as before.
 
 ## Rebuild the data from source (optional)
 
