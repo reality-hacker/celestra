@@ -1,0 +1,8 @@
+# Just what the running app needs (the full stack, including the live "pick any point" feature, is in requirements.txt)
+numpy
+pandas
+pyarrow
+scipy
+fastapi
+uvicorn[standard]
+pydantic
